@@ -40,9 +40,13 @@ export default function Navbar() {
         <div style={{ display: "flex", gap: 18, alignItems: "center", fontSize: 14 }}>
           {user ? (
             <>
-              <Link href="/dashboard">Dashboard</Link>
-              <Link href="/gpa">GPA</Link>
-              <Link href="/predict">Predict</Link>
+              {user.role === "student" && (
+                <>
+                  <Link href="/dashboard">Dashboard</Link>
+                  <Link href="/gpa">GPA</Link>
+                  <Link href="/predict">Predict</Link>
+                </>
+              )}
               {user.role === "advisor" && <Link href="/advisor">Advisees</Link>}
               <button className="btn btn-secondary" onClick={handleLogout}>Log out</button>
             </>
