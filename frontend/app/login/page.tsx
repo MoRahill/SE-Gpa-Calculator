@@ -19,7 +19,7 @@ export default function LoginPage() {
     try {
       const result = await api.login(email, password);
       saveSession(result.access_token, result.user);
-      router.push("/dashboard");
+      router.push(result.user.role === "advisor" ? "/advisor" : "/dashboard");
     } catch (err: any) {
       setError(err.message || "Login failed");
     } finally {
